@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<style>
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 250px;
+}
+
+.submitBtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: center;
+	width: 500px
+}
+
+.textLabel{
+	padding: 12px 20px;
+	text-align: left;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.error {
+	color: red;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+</style>
+
+<h:head>
+	<title>Basic Calculation Page</title>
+</h:head>
+<h:body>
+	
+	<center>
+	<ui:include src="/menu.xhtml" />
+	
+	<div class="pageDescr">
+		<h2>Basic Calculations Page</h2>
+		<p>Easy to use basic calculator input any two numbers and you can
+			divide(/), multiply(*), add(*) or subtract(-) them.</p>
+	</div>
+	<div class="container">
+
+		<h:form>	
+			<h:outputLabel value="#{calcMB.error}" styleClass="error" />
+			<h:message styleClass="error" for="operand2" />	<br/>
+			<h:outputLabel styleClass = "textLabel" value="Number 1  :*" />
+			<h:inputText id="operand1" value="#{calcMB.number1}"  onKeyPress="validateInput('[0-9]*')" required ="true" requiredMessage="Please enter digits"/><br />
+			<br />
+			<h:message styleClass="error" for="operation" />	<br/>
+			<h:outputLabel styleClass = "textLabel" value="Operator  :*" />
+			<h:inputText id="operation" value="#{calcMB.operation}" />
+			<br />
+			<br />
+			<h:message styleClass="error" for="operand2" />	<br/>
+			<h:outputLabel styleClass = "textLabel" value="Number 2  :*"/>
+			<h:inputText id="operand2" value="#{calcMB.number2}"  onKeyPress="validateInput('[0-9]*')" required="true" requiredMessage="Please enter digits"/>
+			<br />
+			<br />
+			<h:commandButton styleClass="submitBtn" value="Calculate"
+				action="#{calcMB.basicCalculations()}" />
+			<br />
+			<br />
+			Answer is : #{calcMB.answer}
+			<br />
+			
+		</h:form>
+	</div>
+	</center>
+
+
+</h:body>
+</html>

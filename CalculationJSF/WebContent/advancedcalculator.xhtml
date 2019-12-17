@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<style>
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 250px;
+}
+
+.submitBtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: center;
+	width: 500px
+}
+
+.textLabel {
+	padding: 12px 20px;
+	text-align: left;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+</style>
+<h:head>
+	<title>Advanced Calculation Page</title>
+</h:head>
+<h:body>
+	<center>
+		<ui:include src="/menu.xhtml" />
+		<div class="pageDescr">
+			<h2>Advanced Calculations Page</h2>
+			<p>Customize your own equation and get the answer, PI and E constants are the only constants available</p>
+			<p>Tricks : For square root use root(x,2) and for cube root use root(x,3). </p>
+		</div>
+
+		<div class="container">
+		
+		<h:form>
+			Enter Equation : <h:inputText id="equation"
+				value="#{calcMB.equation}" required="true" />
+			<br />
+			<br />
+			<h:commandButton value="Calculate" styleClass="submitBtn"
+				action="#{calcMB.advancedCalculations()}" />
+			<br />
+			<br />
+			Answer is : #{calcMB.answer}
+		</h:form>
+		</div>
+	</center>
+</h:body>
+</html>

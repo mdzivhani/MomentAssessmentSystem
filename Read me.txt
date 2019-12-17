@@ -1,0 +1,7 @@
+Server used : wildfly 17.0.0
+Database used : mysq workbench
+
+Instructions :
+
+After running server please run insertData.sql for login dummy data
+

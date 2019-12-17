@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<style>
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 250px;
+}
+
+.submitBtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: center;
+	width: 500px
+}
+
+.textLabel {
+	padding: 12px 20px;
+	text-align: left;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+</style>
+<h:head>
+	<title>Advanced Calculation Page</title>
+</h:head>
+<h:body>
+	<center>
+		<ui:include src="/menu.xhtml" />
+
+		<div class="container">
+			<h:outputLabel styleClass="textLabel" value="Id :" />
+			<h:inputText id="search" value="#{calcMB.id}" />
+			<br />
+			<br />
+			<h:outputLabel styleClass="textLabel" value="Username  :" />
+			<h:inputText id="username" value="#{calcMB.username}" />
+			<br />
+			<br />
+			<p>Date format is (yyyy-MM-dd)</p>
+			<br />
+			<h:outputLabel styleClass="textLabel" value="From Date  :" />
+			<h:inputText id="fromDate" value="#{calcMB.fromDate}" />
+			<br />
+			<br />
+			<h:outputLabel styleClass="textLabel" value="To Date  :" />
+			<h:inputText id="toDate" value="#{calcMB.toDate}" />
+			<br /> <br />
+			<h:commandButton id="filterBtn" value="Filter" action="#{calcMB.filterCalc()}"
+				styleClass="submitBtn" /><br/><br/>
+			<h:commandButton id="findAllBtn" value="View All" action="#{calcMB.findAll()}"
+				styleClass="submitBtn" />
+		</div>
+		<br /> <br />
+
+		<table border="solid">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Equation</th>
+					<th>Answer</th>
+					<th>DateTime</th>
+				</tr>
+			</thead>
+			<tbody>
+				<ui:repeat var="calc" value="#{calcMB.findAll()}">
+					<tr>
+						<td>#{calc.id}</td>
+						<td>#{calc.equation}</td>
+						<td>#{calc.answer}</td>
+						<td>#{calc.time}</td>
+					</tr>
+				</ui:repeat>
+			</tbody>
+		</table>
+
+	</center>
+</h:body>
+</html>

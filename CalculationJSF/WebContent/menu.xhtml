@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<style>
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: #d1f9ff;
+}
+
+.menubutton {
+	float: center;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.menubutton {
+	background-color: #d1f9ff;
+	color: blue;
+	border: none;
+	padding: 15px 32px;
+}
+
+.menubutton:hover {
+	background-color: aqua;
+	color: black;
+}
+
+.welcome{
+	text-align: right;
+}
+</style>
+<h:body>
+	<div class="topnav">
+		<h:form>
+			<h:commandButton value="Basic Calculator" action="basiccalculator"
+				styleClass="menubutton" />
+			<h:commandButton value="Advanced Calculator"
+				action="advancedcalculator" styleClass="menubutton" />
+			
+			<c:choose>
+				<c:when test="#{userMB.isAdmin > 0}">
+					<h:commandButton action="calculationhistory"
+						value="Calculation History" styleClass="menubutton" />
+				</c:when>
+			</c:choose>
+			
+			<h:commandButton value="Logout" action="index"
+				styleClass="menubutton" />
+			<h:outputLabel classStyle ="welcome" value="Welcome #{userMB.username}" /> 
+		</h:form>
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+</h:body>
+</html>
